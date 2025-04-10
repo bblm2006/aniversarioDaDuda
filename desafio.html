@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio - Pegue se Puder!</title>
+    <style>
+        :root {
+            --preto: #000000;
+            --rosa: #FF69B4;
+            --salmao: #FA8072;
+            --verde-lesbico: #74A662;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, var(--rosa) 0%, var(--salmao) 100%);
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #botao-fugitivo {
+            position: absolute;
+            padding: 15px 30px;
+            background-color: var(--verde-lesbico);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        #botao-fugitivo:hover {
+            transform: scale(1.05);
+        }
+
+        .mensagem {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        #botao-desistir {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 15px 30px;
+            background-color: var(--rosa);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        #botao-desistir:hover {
+            background-color: var(--salmao);
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+
+        .contador {
+            position: fixed;
+            top: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-size: 1.1em;
+        }
+
+        #botao-facil {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 30px;
+            background-color: var(--verde-lesbico);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        #botao-facil:hover {
+            background-color: var(--salmao);
+            transform: translateX(-50%) scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="mensagem">
+        <h2>Tente clicar no botão! 😈</h2>
+    </div>
+    <div class="contador">Tentativas: <span id="numero-tentativas">0</span></div>
+    <button id="botao-fugitivo">Clique em Mim!</button>
+    <button id="botao-desistir">Desisto 😢</button>
+    <button id="botao-facil">Modo Fácil 👎</button>
+
+    <script>
+        const botao = document.getElementById('botao-fugitivo');
+        const botaoDesistir = document.getElementById('botao-desistir');
+        const botaoFacil = document.getElementById('botao-facil');
+        const contadorElement = document.getElementById('numero-tentativas');
+        let tentativas = 0;
+        let modoFacil = false;
+
+        async function moverBotao(e) {
+            const maxX = window.innerWidth - botao.offsetWidth;
+            const maxY = window.innerHeight - botao.offsetHeight;
+            
+            if (modoFacil) {
+                await new Promise(resolve => setTimeout(resolve, 100)); // Delay de 300ms
+            }
+            
+            const novoX = Math.random() * maxX;
+            const novoY = Math.random() * maxY;
+            
+            botao.style.left = novoX + 'px';
+            botao.style.top = novoY + 'px';
+            
+            tentativas++;
+            contadorElement.textContent = tentativas;
+
+            if (tentativas >= 25) {
+                botaoDesistir.style.display = 'block';
+            }
+
+            if (tentativas >= 150) {
+                botaoFacil.style.display = 'block';
+            }
+        }
+
+        botao.addEventListener('mouseover', moverBotao);
+        botao.addEventListener('click', () => {
+            window.location.href = 'parabens.html';
+        });
+
+        botaoDesistir.addEventListener('click', () => {
+            window.location.href = 'desistencia.html';
+        });
+
+        botaoFacil.addEventListener('click', () => {
+            modoFacil = true;
+            botaoFacil.style.display = 'none';
+            document.querySelector('.mensagem h2').textContent = 'Agora ficou mais fácil! 😊';
+        });
+
+        // Posição inicial aleatória
+        moverBotao();
+    </script>
+</body>
+</html>

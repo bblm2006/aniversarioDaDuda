@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desistência</title>
+    <style>
+        :root {
+            --preto: #000000;
+            --rosa: #FF69B4;
+            --salmao: #FA8072;
+            --verde-lesbico: #74A662;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, var(--rosa) 0%, var(--salmao) 100%);
+            color: var(--preto);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            margin: 20px;
+        }
+
+        h1 {
+            color: var(--verde-lesbico);
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 20px 0;
+            line-height: 1.6;
+            color: var(--preto);
+        }
+
+        img {
+            width: 300px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 20px 0;
+            transition: transform 0.3s ease;
+            cursor: pointer; /* Add cursor pointer to indicate clickable */
+        }
+
+        img:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-voltar {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: #fff;
+            background-color: var(--verde-lesbico);
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .btn-voltar:hover {
+            background-color: #fff;
+            color: var(--verde-lesbico);
+            border: 2px solid var(--verde-lesbico);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ele não iria desistir de você! 😤</h1>
+        <img src="/media/pedroPascal.jpg" alt="Pedro Pascal" onclick="toggleImage(this)">
+        <p>Ele não iria desistir de você, Maria Eduarda.<br>
+        Ele é o Pedro Pascal, e ele sempre estará ao seu lado! 💪</p>
+        <h1>Mas eu ainda sou mais eu mesmo viu 😎</h1>
+        <p>Agora volta e tenta mais uma vez! 💖</p>
+        <a href="desafio.html" class="btn-voltar">Tentar Novamente ↺</a>
+    </div>
+
+    <script>
+        function toggleImage(img) {
+            if (img.src.includes('pedroPascal.jpg')) {
+                img.src = '/media/bernardo.jpg';
+                img.alt = 'Bernardo';
+            } else {
+                img.src = '/media/pedroPascal.jpg';
+                img.alt = 'Pedro Pascal';
+            }
+        }
+    </script>
+</body>
+</html>
